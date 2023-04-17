@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Plane : MonoBehaviour
 {
@@ -41,13 +42,11 @@ public class Plane : MonoBehaviour
 
     void RotatePlane()
     {
+        var z = transform.rotation.z;
         var rV = Controller.getWayPointPos(waypointIndex) - transform.position;
         var angle = Mathf.Atan2(rV.y, rV.x) * Mathf.Rad2Deg - 90f;
-        var deltaMaxAngle = maxAngle * Time.deltaTime;
-        //Debug.Log(deltaMaxAngle);
-        //Debug.Log(angle);
-        //var z = transform.rotation.z;
-        //var deltaAngle = Mathf.Clamp(angle, z - deltaMaxAngle, z + deltaMaxAngle);
+        //var angle = Vector3.Angle(Vector3.forward, rV);
+        
 
         var r = Quaternion.AngleAxis(angle, Vector3.forward);
         //var r = Quaternion.AngleAxis(deltaAngle, Vector3.forward);
