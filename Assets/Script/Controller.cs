@@ -11,12 +11,17 @@ public class Controller : MonoBehaviour
     public static int eggCount = 0;
     public static int planeDestroyed = 0;
     public TextMeshProUGUI heroTxt, eggTxt, enemyTxt;
-    public GameObject[] wArrary = new GameObject[6];
+    public static GameObject[] wArray = new GameObject[6];
+    private static string[] letter = {"A", "B", "C", "D", "E", "F"};
     private bool isActive = true;
 
     void Start()
     {
         c = Camera.main;
+
+        // Initialize the GameObject array for waypoint
+        for(int i = 0; i < wArray.Length; i++)
+            wArray[i] = GameObject.Find(letter[i]);
     }
 
     void Update()
@@ -32,7 +37,7 @@ public class Controller : MonoBehaviour
 
     void HideWaypoint()
     {
-        foreach(var w in wArrary)
+        foreach(var w in wArray)
             w.SetActive(!isActive);
         isActive = !isActive;
     }
@@ -62,8 +67,8 @@ public class Controller : MonoBehaviour
         enemyTxt.text = $"Enemy\nCount: {spawnCount}\nTotal Destroyed: {planeDestroyed}";
     }
 
-    Vector3 getRelativeWaypoint(Vector3 v, int index)
+    public static Vector3 getWayPointPos(int index)
     {
-        return Vector3.zero;
+        return wArray[index].transform.position;
     }
 }

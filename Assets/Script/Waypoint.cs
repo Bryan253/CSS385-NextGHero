@@ -13,12 +13,6 @@ public class Waypoint : MonoBehaviour
         currentC = GetComponent<SpriteRenderer>().material.color;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ProjectileHit()
     {
         if(--hp == 0)
