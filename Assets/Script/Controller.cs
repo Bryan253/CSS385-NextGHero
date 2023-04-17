@@ -14,6 +14,7 @@ public class Controller : MonoBehaviour
     public static GameObject[] wArray = new GameObject[6];
     private static string[] letter = {"A", "B", "C", "D", "E", "F"};
     private bool isActive = true;
+    private bool isRandom = false;
 
     void Start()
     {
@@ -33,6 +34,8 @@ public class Controller : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.H))
             HideWaypoint();
+        if(Input.GetKeyDown(KeyCode.J))
+            isRandom = !isRandom;
     }
 
     void HideWaypoint()
@@ -63,7 +66,7 @@ public class Controller : MonoBehaviour
     void UpdateText()
     {
         heroTxt.text = $"Hero\nControl: {(Hero.mouseControl ? "Mouse" : "Keyboard")}\nEnemy Collision : {heroCollisionCount}";
-        eggTxt.text = $"Egg\nCount: {eggCount}";
+        eggTxt.text = $"Egg\nCount: {eggCount}\nWaypoint: {(isRandom ? "Seq" : "Random")}";
         enemyTxt.text = $"Enemy\nCount: {spawnCount}\nTotal Destroyed: {planeDestroyed}";
     }
 

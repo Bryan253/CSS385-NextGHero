@@ -104,5 +104,6 @@ public class Hero : MonoBehaviour
     void WaypointCollision(Collider2D c)
     {
         c.gameObject.GetComponent<Waypoint>().RenewWaypoint();
+        Controller.heroCollisionCount++;
     }
 }

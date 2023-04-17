@@ -35,6 +35,7 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D c)
     {
         Destroy(this.gameObject);
+        Controller.eggCount--;
         
         if(c.tag == "Plane")
             PlaneCollision(c);
@@ -49,7 +50,6 @@ public class Projectile : MonoBehaviour
 
         p.currentC.a -= 0.25f;
         p.GetComponent<Renderer>().material.color = p.currentC;
-        Controller.eggCount--;
     }
 
     void WaypointCollision(Collider2D c)
