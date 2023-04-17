@@ -44,12 +44,10 @@ public class Plane : MonoBehaviour
     {
         var z = transform.rotation.z;
         var rV = Controller.getWayPointPos(waypointIndex) - transform.position;
-        var angle = Mathf.Atan2(rV.y, rV.x) * Mathf.Rad2Deg - 90f;
-        //var angle = Vector3.Angle(Vector3.forward, rV);
-        
-
+        var angle = Vector2.SignedAngle(Vector2.up, rV);
+        var deltaMaxAngle = Time.deltaTime * maxAngle;
         var r = Quaternion.AngleAxis(angle, Vector3.forward);
-        //var r = Quaternion.AngleAxis(deltaAngle, Vector3.forward);
+        r = Quaternion.RotateTowards(transform.rotation, r, deltaMaxAngle);
         transform.rotation = r;
     }
 
